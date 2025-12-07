@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "title": "Small Business Kickstart",
+    "shortDesc": "A quick microloan designed for small shops and street vendors to boost daily operations.",
+    "maxLimit": 50000,
+    "tenure": 6,
+    "interest": "12% yearly",
+    "image": "https://i.ibb.co/0Z0dVRx/loan1.jpg",
+    "category": "Business"
+  },
+  {
+    "id": "2",
+    "title": "Education Support Loan",
+    "shortDesc": "Flexible microloan for students needing help with tuition fees, books, or exam costs.",
+    "maxLimit": 30000,
+    "tenure": 12,
+    "interest": "10% yearly",
+    "image": "https://i.ibb.co/Y33LrTB/loan2.jpg",
+    "category": "Education"
+  },
+  {
+    "id": "3",
+    "title": "Emergency Medical Loan",
+    "shortDesc": "Instant microloan for urgent medical expenses, available 24/7 with fast approval.",
+    "maxLimit": 70000,
+    "tenure": 9,
+    "interest": "11% yearly",
+    "image": "https://i.ibb.co/k8QJF1F/loan3.jpg",
+    "category": "Medical"
+  },
+  {
+    "id": "4",
+    "title": "Home Repair Assist Loan",
+    "shortDesc": "A simple microloan to help families repair roofs, floors, electrical issues, and more.",
+    "maxLimit": 45000,
+    "tenure": 8,
+    "interest": "10% yearly",
+    "image": "https://i.ibb.co/Kj8cSGB/loan4.jpg",
+    "category": "Home"
+  },
+  {
+    "id": "5",
+    "title": "Women Entrepreneurs Loan",
+    "shortDesc": "Special microloan for women-led startups, cottage industries, or home-based businesses.",
+    "maxLimit": 60000,
+    "tenure": 10,
+    "interest": "9% yearly",
+    "image": "https://i.ibb.co/V3myZrX/loan5.jpg",
+    "category": "Women Empowerment"
+  },
+  {
+    "id": "6",
+    "title": "Agriculture Growth Loan",
+    "shortDesc": "Support for farmers to purchase seeds, fertilizers, tools, and irrigation supplies.",
+    "maxLimit": 80000,
+    "tenure": 6,
+    "interest": "8% yearly",
+    "image": "https://i.ibb.co/yYgS8qn/loan6.jpg",
+    "category": "Agriculture"
+  }
+]
