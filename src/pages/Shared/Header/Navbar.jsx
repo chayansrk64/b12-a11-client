@@ -1,7 +1,38 @@
 import React from 'react';
 import Logo from '../../../components/Logo/Logo';
+import { Link, NavLink } from 'react-router';
 
 const Navbar = () => {
+
+    const {user} = true;
+
+     const links = (
+    <>
+      <li><NavLink to="/">Home</NavLink></li>
+      <li><NavLink to="/all-loans">All Loans</NavLink></li>
+      <li><NavLink to="/about">About Us</NavLink></li>
+      <li><NavLink to="/contact">Contact</NavLink></li>
+      <li><NavLink to="/login">Login</NavLink></li>
+      <li><NavLink to="/register">Register</NavLink></li>   
+     <div className='flex items-center'>
+         <input type="checkbox" value="synthwave" className="toggle theme-controller " />
+     </div>
+      
+
+      {
+        user && <>
+        <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to="/all-loans">All Loans</NavLink></li>
+          <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+          <li><NavLink to="/user">User</NavLink></li>
+          <li><NavLink to="/logout">LogOut</NavLink></li>
+        </> 
+      }
+       
+    </>
+  );
+
+
     return (
         <div className='bg-primary text-white'>
             <div className="navbar shadow-sm">
@@ -12,38 +43,18 @@ const Navbar = () => {
       </div>
       <ul
         tabIndex="-1"
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><a>Item 1</a></li>
-        <li>
-          <a>Parent</a>
-          <ul className="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </li>
-        <li><a>Item 3</a></li>
+        className="menu menu-sm dropdown-content bg-primary rounded-box z-1 mt-3 w-52 p-2 shadow">
+        {links}
       </ul>
     </div>
     <Logo></Logo>
   </div>
-  <div className="navbar-center hidden lg:flex">
+  <div className="navbar-end hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-      <li><a>Item 1</a></li>
-      <li>
-        <details>
-          <summary>Parent</summary>
-          <ul className="p-2 bg-base-100 w-40 z-1">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </details>
-      </li>
-      <li><a>Item 3</a></li>
+      {links}
     </ul>
   </div>
-  <div className="navbar-end">
-    <a className="btn">Button</a>
-  </div>
+  
 </div>
         </div>
     );
