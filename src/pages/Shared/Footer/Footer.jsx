@@ -7,9 +7,9 @@ const Footer = () => {
         <aside>
           <Logo></Logo>
           <p className="font-bold">
-            ACME Industries Ltd.
+            Microload Industries Ltd.
             <br />
-            Providing reliable tech since 1992
+           Microloan Request & Approval Tracker System
           </p>
           <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
         </aside>
