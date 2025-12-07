@@ -5,6 +5,7 @@ import LoadingSpinner from '../../../components/LoadingSpinner/LoadingSpinner';
 import HowItWorks from '../HowItWorks/HowItWorks';
 import CustomerFeedback from '../CustomerFeedback/CustomerFeedback';
 import VolunteerSection from '../VolunteerSection/VolunteerSection';
+import UpcomingEvents from '../UpComingEvents/UpComingEvents';
 
 const loansPromise = fetch('./loan.json').then(res => res.json())
 
@@ -18,6 +19,7 @@ const Home = () => {
             <HowItWorks></HowItWorks>
             <CustomerFeedback></CustomerFeedback>
             <VolunteerSection></VolunteerSection>
+            <UpcomingEvents></UpcomingEvents>
         </div>
     );
 };
