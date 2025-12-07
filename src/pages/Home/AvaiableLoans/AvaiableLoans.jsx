@@ -1,5 +1,6 @@
 import React, { use } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import { Link } from "react-router";
 
 const AvaiableLoans = ({ loansPromise }) => {
   const loans = use(loansPromise);
@@ -26,7 +27,7 @@ const AvaiableLoans = ({ loansPromise }) => {
              Max Loan: ${loan.maxLimit}
             </p>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary w-full">Apply for Loan</button>
+              <Link to={`/loan-details/${loan.id}`} className="btn btn-primary w-full">View Details</Link>
             </div>
           </div>
         </div>
