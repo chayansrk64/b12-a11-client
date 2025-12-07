@@ -12,17 +12,21 @@ const AvaiableLoans = ({ loansPromise }) => {
         <div key={loan.id} className="card bg-base-100  shadow-sm">
           <figure>
             <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-              alt="Shoes"
+              src={loan.image}
+              alt={loan.title}
+              className="lg:h-[250px] w-full"
             />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">{loan.title}</h2>
+            <h2 className="card-title text-xl">{loan.title}</h2>
             <p>
              {loan.shortDesc}
             </p>
+            <p className="font-bold">
+             Max Loan: ${loan.maxLimit}
+            </p>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">Apply for Loan</button>
+              <button className="btn btn-primary w-full">Apply for Loan</button>
             </div>
           </div>
         </div>
