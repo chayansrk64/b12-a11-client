@@ -1,33 +1,38 @@
-import React from 'react';
+import React, { use } from 'react';
 import Logo from '../../../components/Logo/Logo';
 import { Link, NavLink } from 'react-router';
+import { AuthContext } from '../../../context/AuthContext';
 
 const Navbar = () => {
 
-    const {user} = true;
+    const {user} = use(AuthContext)
+    // console.log(user);
+    
 
      const links = (
     <>
-      <li><NavLink to="/">Home</NavLink></li>
-      <li><NavLink to="/all-loans">All Loans</NavLink></li>
-      <li><NavLink to="/about">About Us</NavLink></li>
-      <li><NavLink to="/contact">Contact</NavLink></li>
-      <li><NavLink to="/login">Login</NavLink></li>
-      <li><NavLink to="/register">Register</NavLink></li>   
-     <div className='flex items-center'>
-         <input type="checkbox" value="synthwave" className="toggle theme-controller " />
-     </div>
-      
 
-      {
-        user && <>
+    {
+      user ? <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/all-loans">All Loans</NavLink></li>
-          <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-          <li><NavLink to="/user">User</NavLink></li>
-          <li><NavLink to="/logout">LogOut</NavLink></li>
-        </> 
-      }
+        <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+        <li><NavLink to="/user">User</NavLink></li>
+        <li><NavLink to="/logout">LogOut</NavLink></li>
+      </> 
+      :
+       <>
+        <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to="/all-loans">All Loans</NavLink></li>
+        <li><NavLink to="/about">About Us</NavLink></li>
+        <li><NavLink to="/contact">Contact</NavLink></li>
+        <li><NavLink to="/login">Login</NavLink></li>
+        <li><NavLink to="/register">Register</NavLink></li>   
+      <div className='flex items-center'>
+          <input type="checkbox" value="synthwave" className="toggle theme-controller " />
+      </div>
+      </>
+    }
        
     </>
   );
