@@ -3,6 +3,9 @@ import RootLayout from "../layouts/RootLayout";
 import Home from "../pages/Home/Home/Home";
 import LoanDetails from "../pages/LoanDetails/LoanDetails";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+import AuthLayout from "../layouts/AuthLayout";
+import Register from "../pages/Auth/Register/Register";
+import Login from "../pages/Auth/Login/Login";
 
 export const router = createBrowserRouter([
     {
@@ -21,6 +24,20 @@ export const router = createBrowserRouter([
                     return loans.find(loan => loan.id == params.id)
                 },
                 Component: LoanDetails
+            }
+        ]
+    },
+    {
+        path: '/',
+        Component: AuthLayout,
+        children: [
+            {
+                path: 'register',
+                Component: Register
+            },
+            {
+                path: 'login',
+                Component: Login
             }
         ]
     }
