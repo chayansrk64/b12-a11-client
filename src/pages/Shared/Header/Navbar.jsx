@@ -1,12 +1,31 @@
-import React, { use } from 'react';
 import Logo from '../../../components/Logo/Logo';
 import { Link, NavLink } from 'react-router';
-import { AuthContext } from '../../../context/AuthContext';
+import useAuth from '../../../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
 
-    const {user} = use(AuthContext)
+    const {user, setLoading, logOut} = useAuth()
     // console.log(user);
+
+    const handleLogOut = () => {
+       logOut()
+        .then(() => {
+        toast.success('Logout Successfull!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          
+          });
+        setLoading(false)
+      })
+      .catch(error => toast.error(error))
+    }
     
 
      const links = (
@@ -17,8 +36,8 @@ const Navbar = () => {
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/all-loans">All Loans</NavLink></li>
         <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-        <li><NavLink to="/user">User</NavLink></li>
-        <li><NavLink to="/logout">LogOut</NavLink></li>
+        <li><NavLink to="/user">{user?.displayName}</NavLink></li>
+        <li><button onClick={handleLogOut}>LogOut</button></li>
       </> 
       :
        <>
@@ -61,7 +80,7 @@ const Navbar = () => {
   </div>
   
 </div>
-        </div>
+</div>
     );
 };
 

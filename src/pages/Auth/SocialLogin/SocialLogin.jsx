@@ -1,15 +1,35 @@
+import { toast } from "react-toastify";
+import useAuth from "../../../hooks/useAuth";
 
 
 
 const SocialLogin = () => {
-    // const { googleLogIn, setLoading } = useAuth()
+    const { googleLogIn, setLoading } = useAuth()
     // const location = useLocation()
     // const navigate = useNavigate()
     // const axiosSecure = useAxiosSecure()
     
 
     const handleGoogleLogin = () => {
-       
+       googleLogIn()
+       .then(result => {
+          console.log(result.user);
+        toast.success('User Register Successfull!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          
+          });
+          setLoading(false)
+       })
+       .catch(error => {
+            toast.error(error);
+       })
         
     }
 
