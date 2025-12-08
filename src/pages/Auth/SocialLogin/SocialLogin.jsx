@@ -1,5 +1,5 @@
-import { toast } from "react-toastify";
 import useAuth from "../../../hooks/useAuth";
+import Swal from 'sweetalert2';
 
 
 
@@ -14,21 +14,21 @@ const SocialLogin = () => {
        googleLogIn()
        .then(result => {
           console.log(result.user);
-        toast.success('User Register Successfull!', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          
-          });
+            Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Login Successfull",
+            showConfirmButton: false,
+            timer: 1500
+            });
           setLoading(false)
        })
        .catch(error => {
-            toast.error(error);
+         Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: error.message,
+            });
        })
         
     }

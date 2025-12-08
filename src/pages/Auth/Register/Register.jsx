@@ -2,10 +2,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import useAuth from '../../../hooks/useAuth';
 
 const Register = () => {
 
-    // const {setLoading, createUser, updateUserProfile } = useAuth();
+    const {setLoading, createUser, } = useAuth();
     const {register, formState: {errors}, handleSubmit} = useForm()
     // const location = useLocation();
     // const navigate = useNavigate()
@@ -15,7 +16,19 @@ const Register = () => {
 
 
     const handleRegister = data => {
-       console.log(data);
+      
+       const profileImage = data.photo[0]
+       console.log(profileImage);
+
+       createUser(data.email, data.password)
+       .then(result => {
+         console.log(result.user);
+        //  prepare form data for image
+        const formData = new FormData()
+        formData.append('image', profileImage)
+
+        
+       })
     }
 
     return (
