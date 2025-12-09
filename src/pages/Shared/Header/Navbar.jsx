@@ -36,8 +36,11 @@ const Navbar = () => {
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/all-loans">All Loans</NavLink></li>
         <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-        <li><NavLink to="/user">{user?.displayName}</NavLink></li>
         <li><button onClick={handleLogOut}>LogOut</button></li>
+        <li>
+           <img className='w-10 h-8 object-cover rounded-full p-0' title={user?.displayName || "User"} src={ user?.photoURL} alt="" />
+        </li>
+         
       </> 
       :
        <>
