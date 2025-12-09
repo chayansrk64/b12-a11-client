@@ -37,6 +37,7 @@ const Register = () => {
              //  update user profile 
             const updateProfile = {
                 displayName : data.name,
+                password : data.password,
                 photoURL : res.data.data.url
             }
 

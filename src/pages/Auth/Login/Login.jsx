@@ -33,6 +33,14 @@ const Login = () => {
         })
         .catch(error => {
             console.log(error);
+             setLoading(false);
+                Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Login Failed!",
+                text: error.message,
+                showConfirmButton: true,
+            });
         })
         console.log(data);
        
