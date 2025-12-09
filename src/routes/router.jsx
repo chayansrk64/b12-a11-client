@@ -6,6 +6,7 @@ import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import AuthLayout from "../layouts/AuthLayout";
 import Register from "../pages/Auth/Register/Register";
 import Login from "../pages/Auth/Login/Login";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
                     const loans = await fetch(`/loan.json`).then(res => res.json())
                     return loans.find(loan => loan.id == params.id)
                 },
-                Component: LoanDetails
+                element: <PrivateRoute> <LoanDetails></LoanDetails> </PrivateRoute>
             }
         ]
     },

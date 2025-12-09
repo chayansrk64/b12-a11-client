@@ -1,3 +1,4 @@
+import { useLocation, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import Swal from 'sweetalert2';
 
@@ -5,8 +6,8 @@ import Swal from 'sweetalert2';
 
 const SocialLogin = () => {
     const { googleLogIn, setLoading } = useAuth()
-    // const location = useLocation()
-    // const navigate = useNavigate()
+    const location = useLocation()
+    const navigate = useNavigate()
     // const axiosSecure = useAxiosSecure()
     
 
@@ -22,6 +23,7 @@ const SocialLogin = () => {
             timer: 1500
             });
           setLoading(false)
+          navigate(location?.state || '/')
        })
        .catch(error => {
          Swal.fire({

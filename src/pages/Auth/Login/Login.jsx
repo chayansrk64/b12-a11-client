@@ -1,10 +1,15 @@
 
 import { useForm } from 'react-hook-form';
 import SocialLogin from '../SocialLogin/SocialLogin';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
+import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Login = () => {
 
+    const {signInUser, setLoading} = useAuth()
+    const location = useLocation()
+    const navigate = useNavigate()
     
     const {
         register,
@@ -13,6 +18,22 @@ const Login = () => {
     } = useForm()
     
     const handleLogin = data => {
+        signInUser(data.email, data.password)
+        .then(result => {
+            console.log(result.user);
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Login Successfull",
+                showConfirmButton: false,
+                timer: 1500
+                });
+              setLoading(false)
+              navigate(location?.state || '/')
+        })
+        .catch(error => {
+            console.log(error);
+        })
         console.log(data);
        
     }

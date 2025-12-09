@@ -1,15 +1,17 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const Register = () => {
 
-    const {setLoading, createUser, } = useAuth();
+    const {setLoading, createUser, updateUserProfile } = useAuth();
     const {register, formState: {errors}, handleSubmit} = useForm()
-    // const location = useLocation();
-    // const navigate = useNavigate()
+    const location = useLocation();
+    const navigate = useNavigate()
     // console.log('location form register', location);
     // const axiosSecure = useAxiosSecure()
 
@@ -17,17 +19,54 @@ const Register = () => {
 
     const handleRegister = data => {
       
-       const profileImage = data.photo[0]
-       console.log(profileImage);
-
+        const profileImage = data.photo[0];
+   
        createUser(data.email, data.password)
        .then(result => {
          console.log(result.user);
-        //  prepare form data for image
-        const formData = new FormData()
+         // store the photo and get the photo url;
+        //  1. prepare data for imgBB (store image in form data)
+        const formData = new FormData();
         formData.append('image', profileImage)
+        // 2. upload to imgBB using axios and get the url;
+        const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`;
+        // 3. post by axios
+        axios.post(image_API_URL, formData)
+        .then(res => {
+            console.log('after image uploaded', res.data.data.url);
+             //  update user profile 
+            const updateProfile = {
+                displayName : data.name,
+                photoURL : res.data.data.url
+            }
 
+            updateUserProfile(updateProfile)
+            .then(() => {
+                console.log('user profile updated');
+                navigate(location.state || '/')
+            })
+            .catch(error => console.log(error))
+
+
+        })
+        .catch(error => {
+            console.log(error);
+        })
+       
+
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Register Successfull",
+            showConfirmButton: false,
+            timer: 1500
+            });
+                  
+        setLoading(false);
         
+       })
+       .catch(error => {
+         console.log(error);
        })
     }
 
