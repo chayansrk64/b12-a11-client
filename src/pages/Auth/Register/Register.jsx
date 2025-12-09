@@ -87,15 +87,29 @@ const Register = () => {
                 <label className="label font-bold">Photo</label>
                 <input type="file" {...register("photo", {required: true})} className="file-input w-full" placeholder="Photo" />
                 {errors.photo?.type === 'required' && <p className='text-red-500'>Photo is required!</p>}
+                {/* role */}
+                 <label className="label font-bold">Role</label>
+                <select  {...register("role", { required: true })}   defaultValue="borrower" className="select w-full">
+                    <option disabled={true}>Select Your Role</option>
+                    <option>borrower</option>
+                    <option>manager</option>
+                </select>
+                {errors.role && <p className="text-red-500">Role is required!</p>}
                 {/* email */}
                 <label className="label font-bold">Email</label>
                 <input type="email" {...register("email", {required: true})} className="input w-full" placeholder="Email" />
                 {errors.email?.type === 'required' && <p className='text-red-500'>Email is required!</p>}
                 {/* password */}
                 <label className="label font-bold">Password</label>
-                <input type="password" {...register('password', {required: true, minLength: 6})} className="input w-full" placeholder="Password" />
+                <input type="password" {...register('password', {required: true, minLength: 6,  validate: {
+                    hasUppercase: (value) =>
+                        /[A-Z]/.test(value) || "Password must contain at least one uppercase letter!",
+                    hasLowercase: (value) =>
+                        /[a-z]/.test(value) || "Password must contain at least one lowercase letter!",
+                    },})} className="input w-full" placeholder="Password" />
                 {errors.password?.type === 'required' && <p className='text-red-500'>Password is required!</p>}
                 {errors.password?.type === 'minLength' && <p className='text-red-500'>Password should be at least 6 character!</p>}
+                {errors.password?.message && (<p className="text-red-500">{errors.password.message}</p>)}
 
                 <button className="btn bg-primary  mt-4">Register</button>
             </fieldset>
