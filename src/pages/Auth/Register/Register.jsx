@@ -5,6 +5,7 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Register = () => {
 
@@ -34,11 +35,28 @@ const Register = () => {
         axios.post(image_API_URL, formData)
         .then(res => {
             console.log('after image uploaded', res.data.data.url);
+            const photoURL = res.data.data.url;
+            // create user in the database;
+            const userInfo = {
+                displayName : data.name,
+                email: data.email,
+                photoURL : photoURL,
+                role: data.role
+            }
+
+            axios.post('http://localhost:3000/users', userInfo)
+            .then(res => {
+                if(res.data.insertedId){
+                    toast.success("user created successfully")
+                }
+            })
+            .catch(error => toast.error(error.message))
+
              //  update user profile 
             const updateProfile = {
                 displayName : data.name,
                 password : data.password,
-                photoURL : res.data.data.url
+                photoURL : photoURL
             }
 
             updateUserProfile(updateProfile)
@@ -54,20 +72,12 @@ const Register = () => {
             console.log(error);
         })
        
-
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Register Successfull",
-            showConfirmButton: false,
-            timer: 1500
-            });
-                  
+       toast.success("Register Successfull")     
         setLoading(false);
         
        })
        .catch(error => {
-         console.log(error);
+         toast.error(error.message)
        })
     }
 

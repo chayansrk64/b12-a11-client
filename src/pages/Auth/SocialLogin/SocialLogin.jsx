@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import Swal from 'sweetalert2';
+import { toast } from "react-toastify";
 
 
 
@@ -15,22 +16,21 @@ const SocialLogin = () => {
        googleLogIn()
        .then(result => {
           console.log(result.user);
-            Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Login Successfull",
-            showConfirmButton: false,
-            timer: 1500
-            });
+          
+          // create user in the database
+          const userInfo = {
+            displayName: result.user.displayName,
+            email: result.user.email,
+            photoURL: result.user.photoURL
+          }
+        // TODO: axiosSecure call;
+          
+          toast.success('Login Successfull')
           setLoading(false)
           navigate(location?.state || '/')
        })
        .catch(error => {
-         Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: error.message,
-            });
+         toast.error(error.message)
        })
         
     }

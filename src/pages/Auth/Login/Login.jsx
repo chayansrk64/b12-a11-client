@@ -4,6 +4,7 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -21,26 +22,13 @@ const Login = () => {
         signInUser(data.email, data.password)
         .then(result => {
             console.log(result.user);
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Login Successfull",
-                showConfirmButton: false,
-                timer: 1500
-                });
+            toast.success("Login Successfull")
               setLoading(false)
               navigate(location?.state || '/')
         })
         .catch(error => {
-            console.log(error);
              setLoading(false);
-                Swal.fire({
-                position: "top-end",
-                icon: "error",
-                title: "Login Failed!",
-                text: error.message,
-                showConfirmButton: true,
-            });
+            toast.error(error.message)
         })
         console.log(data);
        

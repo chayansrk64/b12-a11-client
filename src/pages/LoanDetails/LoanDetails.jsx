@@ -1,9 +1,10 @@
 import React from "react";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 
 
 const LoanDetails = () => {
   const loan = useLoaderData();
+  
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
@@ -56,9 +57,9 @@ const LoanDetails = () => {
 
           {/* Action Buttons */}
           <div className="flex gap-4">
-            <button className="px-6 py-3 bg-primary text-white font-semibold rounded-md  transition">
+            <Link to={`/loan-application/${loan.id}`} className="px-6 py-3 bg-primary text-white font-semibold rounded-md  transition">
               Apply For Loan
-            </button>
+            </Link>
 
             <button className="px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-md hover:bg-gray-100 transition">
               Contact Advisor
