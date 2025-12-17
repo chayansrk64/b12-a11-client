@@ -85,7 +85,7 @@ const DashboardLayout = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/dashboard/all-loans" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="All Loans">
+                    <NavLink to="/dashboard/all-loans-admin" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="All Loans">
                     <span className="my-1.5 inline-block size-4 text-xl"> <GiMoneyStack /> </span>
                     <span className="is-drawer-close:hidden">All Loans</span>
                     </NavLink>

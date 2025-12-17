@@ -12,9 +12,9 @@ import DashboardLayout from "../layouts/dashboardLayout";
 import MyLoans from "../pages/Dashboard/Borrower/MyLoans/MyLoans";
 import PendingLoans from "../pages/Dashboard/Manager/PendingLoans/PendingLoans";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
-import AllLoans from "../pages/Dashboard/Admin/AllLoansAdmin/AllLoansAdmin";
 import LoanApplications from "../pages/Dashboard/Admin/LoanApplications/LoanApplications";
 import AllLoansAdmin from "../pages/Dashboard/Admin/AllLoansAdmin/AllLoansAdmin";
+import AllLoans from "../pages/AllLoans/AllLoans";
 
 export const router = createBrowserRouter([
     {
@@ -83,7 +83,7 @@ export const router = createBrowserRouter([
                 element: <ManageUsers></ManageUsers>
             },
             {
-                path: 'all-loans',
+                path: 'all-loans-admin',
                 element: <AllLoansAdmin></AllLoansAdmin>
             },
             {

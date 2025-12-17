@@ -1,10 +1,9 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import React, { useRef, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useRef } from 'react';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import LoadingSpinner from '../../../../components/LoadingSpinner/LoadingSpinner';
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
-import { FaPen, FaRegTrashCan } from 'react-icons/fa6';
-import axios from 'axios';
+import { FaPen } from 'react-icons/fa6';
 
 const ManageUsers = () => {
     const modalRef = useRef(null)
@@ -25,7 +24,7 @@ const ManageUsers = () => {
 
 
     const handleOpenModal = (user) => {
-       
+       console.log('user from manage user', user);
         modalRef.current.showModal()
 
 

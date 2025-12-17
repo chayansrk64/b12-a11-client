@@ -3,7 +3,7 @@ import React from 'react';
 const AllLoansAdmin = () => {
     return (
         <div>
-            All Loans
+            All Loans admin
         </div>
     );
 };
