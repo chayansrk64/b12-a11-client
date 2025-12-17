@@ -1,20 +1,30 @@
 import React from 'react';
-import { MdAttachMoney } from 'react-icons/md';
+import { MdAttachMoney, MdOutlinePendingActions } from 'react-icons/md';
 import { Link, NavLink, Outlet } from 'react-router';
+import useRole from '../hooks/useRole';
+import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
 
 const DashboardLayout = () => {
+
+    const {roleLoading, role} = useRole()
+
+     if(roleLoading){
+        return <LoadingSpinner></LoadingSpinner>
+    }
+
+
     return (
         <div>
             <div className="drawer lg:drawer-open">
   <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content">
     {/* Navbar */}
-    <nav className="navbar w-full bg-base-300">
+    <nav className="navbar w-full bg-secondary">
       <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square btn-ghost">
         {/* Sidebar toggle icon */}
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path><path d="M9 4v16"></path><path d="M14 10l2 2l-2 2"></path></svg>
       </label>
-      <div className="px-4">Navbar Title</div>
+      <div className="px-4">Dashboard</div>
     </nav>
     {/* Page content here */}
     <Outlet></Outlet>
@@ -23,7 +33,7 @@ const DashboardLayout = () => {
 
   <div className="drawer-side is-drawer-close:overflow-visible">
     <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-    <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+    <div className="flex min-h-full flex-col items-start bg-primary is-drawer-close:w-14 is-drawer-open:w-64">
       {/* Sidebar content here */}
       <ul className="menu w-full grow">
         {/* List item */}
@@ -36,12 +46,35 @@ const DashboardLayout = () => {
         </li>
 
         {/* our links */}
-        <li>
-            <NavLink to="/dashboard/my-loans" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="my Loans">
-            <span className="my-1.5 inline-block size-4 text-xl"> <MdAttachMoney /> </span>
-            <span className="is-drawer-close:hidden">My Loans</span>
-            </NavLink>
-        </li>
+
+        {/* borrower routes */}
+        {
+            role === 'borrower' && <>
+                <li>
+                    <NavLink to="/dashboard/my-loans" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="my Loans">
+                    <span className="my-1.5 inline-block size-4 text-xl"> <MdAttachMoney /> </span>
+                    <span className="is-drawer-close:hidden">My Loans</span>
+                    </NavLink>
+                </li>
+            
+            </>
+        }
+
+        {/* manager routes */}
+        {
+            role === 'manager' && <>
+                 <li>
+                    <NavLink to="/dashboard/pending-loans" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="Pending Loans">
+                    <span className="my-1.5 inline-block size-4 text-xl"> <MdOutlinePendingActions /> </span>
+                    <span className="is-drawer-close:hidden">Pending Loans</span>
+                    </NavLink>
+                </li>
+            </>
+        }
+
+        {/* admin routes */}
+        
+        
 
         {/* List item */}
         <li>

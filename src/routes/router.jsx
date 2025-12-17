@@ -10,6 +10,8 @@ import PrivateRoute from "./PrivateRoute";
 import LoanApplication from "../pages/LoanApplication/LoanApplication";
 import DashboardLayout from "../layouts/dashboardLayout";
 import MyLoans from "../pages/Dashboard/MyLoans/MyLoans";
+import PendingLoans from "../pages/Dashboard/PendingLoans/PendingLoans";
+import AllLoans from "../pages/AllLoans/AllLoans";
 
 export const router = createBrowserRouter([
     {
@@ -37,6 +39,10 @@ export const router = createBrowserRouter([
                 },
                 Component: LoanApplication,
                 hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>
+            },
+            {
+                path: 'all-loans',
+                Component: AllLoans
             }
         ]
     },
@@ -61,6 +67,10 @@ export const router = createBrowserRouter([
             {
                 path: 'my-loans',
                 Component: MyLoans
+            },
+            {
+                path: 'pending-loans',
+                Component: PendingLoans
             }
         ]
     }

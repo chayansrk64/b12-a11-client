@@ -1,10 +1,33 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router";
+import { Link, useParams } from "react-router";
+import useRole from "../../hooks/useRole";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 
 const LoanDetails = () => {
-  const loan = useLoaderData();
+
+  const {role} = useRole();
+  const isDisabled = role === 'manager' || role === 'admin';
+  console.log(role);
+
+  const { id } = useParams();
+  const axiosSecure = useAxiosSecure();
+
+  const { isLoading, data: loan } = useQuery({
+    queryKey: ['loan', id],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/loans/${id}`);
+      return res.data;
+    },
+    enabled: !!id, // ensures query only runs if id exists
+  });
+
   
+  if (isLoading) return <LoadingSpinner />;
+  if (!loan) return <div>Loan not found</div>;
+
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
@@ -19,7 +42,7 @@ const LoanDetails = () => {
         <div className="w-full">
           <img
             src={loan.image}
-            alt={loan.title}
+            alt={loan?.title}
             className="rounded-xl shadow-lg w-full h-full "
           />
         </div>
@@ -57,9 +80,17 @@ const LoanDetails = () => {
 
           {/* Action Buttons */}
           <div className="flex gap-4">
-            <Link to={`/loan-application/${loan.id}`} className="px-6 py-3 bg-primary text-white font-semibold rounded-md  transition">
-              Apply For Loan
-            </Link>
+            <Link
+                to={isDisabled ? '#' : `/loan-application/${loan.id}`}
+                onClick={(e) => isDisabled && e.preventDefault()}
+                className={`px-6 py-3 font-semibold rounded-md transition
+                  ${isDisabled
+                    ? 'bg-gray-400 cursor-not-allowed pointer-events-none'
+                    : 'bg-primary text-white hover:bg-primary/90'
+                  }`}
+              >
+                Apply For Loan
+              </Link>
 
             <button className="px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-md hover:bg-gray-100 transition">
               Contact Advisor
