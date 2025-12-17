@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query'
-import useAuth from '../../../hooks/useAuth';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import LoadingSpinner from '../../../components/LoadingSpinner/LoadingSpinner';
+import useAuth from '../../../../hooks/useAuth';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
+import LoadingSpinner from '../../../../components/LoadingSpinner/LoadingSpinner';
 import { FaTrashCan } from 'react-icons/fa6';
 
 const MyLoans = () => {

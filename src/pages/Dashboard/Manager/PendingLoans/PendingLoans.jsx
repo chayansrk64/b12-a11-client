@@ -1,7 +1,7 @@
 import React from 'react';
-import LoadingSpinner from '../../../components/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '../../../../components/LoadingSpinner/LoadingSpinner';
 import { useQuery } from '@tanstack/react-query';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import { FaTrashCan } from 'react-icons/fa6';
 
 const PendingLoans = () => {

@@ -25,7 +25,7 @@ const AllLoans = () => {
     return (
         <div>
              <SectionTitle title="All Loans" subtitle="All loans here for your business"></SectionTitle>
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-10">
       {
       loans.map((loan) => (
         <div key={loan.id} className="card bg-base-100  shadow-sm">

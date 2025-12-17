@@ -9,9 +9,12 @@ import Login from "../pages/Auth/Login/Login";
 import PrivateRoute from "./PrivateRoute";
 import LoanApplication from "../pages/LoanApplication/LoanApplication";
 import DashboardLayout from "../layouts/dashboardLayout";
-import MyLoans from "../pages/Dashboard/MyLoans/MyLoans";
-import PendingLoans from "../pages/Dashboard/PendingLoans/PendingLoans";
-import AllLoans from "../pages/AllLoans/AllLoans";
+import MyLoans from "../pages/Dashboard/Borrower/MyLoans/MyLoans";
+import PendingLoans from "../pages/Dashboard/Manager/PendingLoans/PendingLoans";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
+import AllLoans from "../pages/Dashboard/Admin/AllLoansAdmin/AllLoansAdmin";
+import LoanApplications from "../pages/Dashboard/Admin/LoanApplications/LoanApplications";
+import AllLoansAdmin from "../pages/Dashboard/Admin/AllLoansAdmin/AllLoansAdmin";
 
 export const router = createBrowserRouter([
     {
@@ -64,13 +67,28 @@ export const router = createBrowserRouter([
         path: 'dashboard',
         element: <PrivateRoute> <DashboardLayout></DashboardLayout> </PrivateRoute>,
         children: [
+            // borrower
             {
                 path: 'my-loans',
                 Component: MyLoans
             },
+            // manager
             {
                 path: 'pending-loans',
                 Component: PendingLoans
+            },
+            // admin
+            {
+                path: 'manage-users',
+                element: <ManageUsers></ManageUsers>
+            },
+            {
+                path: 'all-loans',
+                element: <AllLoansAdmin></AllLoansAdmin>
+            },
+            {
+                path: 'loan-applications',
+                element: <LoanApplications></LoanApplications>
             }
         ]
     }

@@ -1,5 +1,8 @@
 import React from 'react';
 import { MdAttachMoney, MdOutlinePendingActions } from 'react-icons/md';
+import { GiMoneyStack } from "react-icons/gi";
+import { GrUserManager } from "react-icons/gr";
+import { TfiWrite } from "react-icons/tfi";
 import { Link, NavLink, Outlet } from 'react-router';
 import useRole from '../hooks/useRole';
 import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
@@ -73,6 +76,28 @@ const DashboardLayout = () => {
         }
 
         {/* admin routes */}
+        {
+            role === 'admin' && <>
+                <li>
+                    <NavLink to="/dashboard/manage-users" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="Manage Users">
+                    <span className="my-1.5 inline-block size-4 text-xl"> <GrUserManager /> </span>
+                    <span className="is-drawer-close:hidden">Manage Users</span>
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/dashboard/all-loans" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="All Loans">
+                    <span className="my-1.5 inline-block size-4 text-xl"> <GiMoneyStack /> </span>
+                    <span className="is-drawer-close:hidden">All Loans</span>
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/dashboard/loan-applications" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="Loan Applications">
+                    <span className="my-1.5 inline-block size-4 text-xl"> <TfiWrite /> </span>
+                    <span className="is-drawer-close:hidden">Loan Applications</span>
+                    </NavLink>
+                </li>
+            </>
+        }
         
         
 
