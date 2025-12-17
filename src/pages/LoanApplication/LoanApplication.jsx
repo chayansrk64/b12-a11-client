@@ -1,15 +1,15 @@
 import React from 'react';
 import useAuth from '../../hooks/useAuth';
-import { useLoaderData, useParams } from 'react-router';
+import { useLoaderData } from 'react-router';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const LoanApplication = () => {
     const {user} = useAuth();
-    const {id} = useParams()
     const loan = useLoaderData()
+    const axiosSecure = useAxiosSecure()
 
     const {
         register,
@@ -24,7 +24,7 @@ const LoanApplication = () => {
         console.log(data);
 
 
-        axios.post('http://localhost:3000/loans', data)
+        axiosSecure.post('/loans', data)
         .then(res => {
             console.log('after loan application', res.data);
             if(res.data.insertedId){

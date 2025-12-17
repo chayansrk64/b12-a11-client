@@ -8,6 +8,8 @@ import Register from "../pages/Auth/Register/Register";
 import Login from "../pages/Auth/Login/Login";
 import PrivateRoute from "./PrivateRoute";
 import LoanApplication from "../pages/LoanApplication/LoanApplication";
+import DashboardLayout from "../layouts/dashboardLayout";
+import MyLoans from "../pages/Dashboard/MyLoans/MyLoans";
 
 export const router = createBrowserRouter([
     {
@@ -49,6 +51,16 @@ export const router = createBrowserRouter([
             {
                 path: 'login',
                 Component: Login
+            }
+        ]
+    },
+    {
+        path: 'dashboard',
+        element: <PrivateRoute> <DashboardLayout></DashboardLayout> </PrivateRoute>,
+        children: [
+            {
+                path: 'my-loans',
+                Component: MyLoans
             }
         ]
     }

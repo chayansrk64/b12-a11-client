@@ -7,7 +7,7 @@ import CustomerFeedback from '../CustomerFeedback/CustomerFeedback';
 import VolunteerSection from '../VolunteerSection/VolunteerSection';
 import UpcomingEvents from '../UpComingEvents/UpComingEvents';
 
-const loansPromise = fetch('./loan.json').then(res => res.json())
+const loansPromise = fetch('http://localhost:3000/loans').then(res => res.json())
 
 const Home = () => {
     return (
