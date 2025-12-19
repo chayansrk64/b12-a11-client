@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import LoadingSpinner from '../../../../components/LoadingSpinner/LoadingSpinner';
 import { FaRegTrashCan } from 'react-icons/fa6';
@@ -8,7 +8,10 @@ import { FaPencilAlt } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import ConfirmDeleteToast from '../../../../components/ConfirmDeleteToast/ConfirmDeleteToast';
 
+
+
 const AllLoansAdmin = () => {
+    const queryClient = useQueryClient();
     const modalRef = useRef(null)
     const [selectedLoan, setSelectedLoan] = useState(null);
     const axiosSecure = useAxiosSecure()
@@ -77,7 +80,7 @@ const closeModal = () => {
             await axiosSecure.delete(`/loans/${loan._id}`);
             toast.success('Deleted successfully');
             closeToast();
-            refetch(); // optional if you want to refresh list
+            refetch(); 
           } catch (err) {
             toast.error(err.message);
           }
@@ -91,6 +94,23 @@ const closeModal = () => {
     }
   );
 };
+
+
+
+const handleShowHomeToggle = async (loan, isChecked) => {
+  try {
+    await axiosSecure.patch(`/loans/${loan._id}/show-home`, {
+      showHome: isChecked,
+    });
+
+    refetch();
+  } catch (err) {
+    toast.error(err.message);
+  }
+
+};
+queryClient.invalidateQueries(['allLoans']);
+
 
 
 
@@ -144,8 +164,16 @@ const closeModal = () => {
         </td>
         <td>{loan.category}</td>
         <td>
-            <input type="checkbox" name="" id="" />
+            <input
+                type="checkbox"
+                className="toggle toggle-primary"
+                checked={loan?.showHome === true}
+                onChange={(e) =>
+                handleShowHomeToggle(loan, e.target.checked)
+                }
+            />
         </td>
+
         <th>
           <button onClick={() => openUpdateModal(loan)} className="btn btn-sm me-2"> <FaPencilAlt /> </button>
           <button onClick={() => handleDeleteLoan(loan)} className="btn btn-sm hover:bg-red-500 hover:text-white"> <FaRegTrashCan /> </button>

@@ -1,15 +1,30 @@
-import React, { use } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { Link } from "react-router";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
 
-const AvaiableLoans = ({ loansPromise }) => {
-  const loans = use(loansPromise);
+const AvaiableLoans = () => {
+  
+  const axiosSecure = useAxiosSecure();
+
+  const { data: loans = [], isLoading } = useQuery({
+    queryKey: ['home-loans'],
+    queryFn: async () => {
+      const res = await axiosSecure.get('/home-loans');
+      return res.data;
+    },
+  });
+
+  if (isLoading) return <LoadingSpinner />;
+
+
   return (
     <div>
       <SectionTitle title="Available Loans" subtitle="Choose your loans here for your business"></SectionTitle>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
       {
-      loans.slice(0,6).map((loan) => (
+      loans.map((loan) => (
         <div key={loan.id} className="card bg-base-100  shadow-sm">
           <figure>
             <img
