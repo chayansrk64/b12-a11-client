@@ -6,6 +6,7 @@ import LoadingSpinner from '../../../../components/LoadingSpinner/LoadingSpinner
 import { FaRegTrashCan } from 'react-icons/fa6';
 import { FaPencilAlt } from "react-icons/fa";
 import { toast } from 'react-toastify';
+import ConfirmDeleteToast from '../../../../components/ConfirmDeleteToast/ConfirmDeleteToast';
 
 const AllLoansAdmin = () => {
     const modalRef = useRef(null)
@@ -67,6 +68,32 @@ const closeModal = () => {
     }
 
 
+   const handleDeleteLoan = (loan) => {
+  toast(
+    ({ closeToast }) => (
+      <ConfirmDeleteToast
+        onConfirm={async () => {
+          try {
+            await axiosSecure.delete(`/loans/${loan._id}`);
+            toast.success('Deleted successfully');
+            closeToast();
+            refetch(); // optional if you want to refresh list
+          } catch (err) {
+            toast.error(err.message);
+          }
+        }}
+        onCancel={closeToast}
+      />
+    ),
+    {
+      autoClose: false,
+      closeOnClick: false,
+    }
+  );
+};
+
+
+
     if(isPending){
         return <LoadingSpinner></LoadingSpinner>
     }
@@ -121,7 +148,7 @@ const closeModal = () => {
         </td>
         <th>
           <button onClick={() => openUpdateModal(loan)} className="btn btn-sm me-2"> <FaPencilAlt /> </button>
-          <button className="btn btn-sm hover:bg-red-500 hover:text-white"> <FaRegTrashCan /> </button>
+          <button onClick={() => handleDeleteLoan(loan)} className="btn btn-sm hover:bg-red-500 hover:text-white"> <FaRegTrashCan /> </button>
         </th>
       </tr>
      )
