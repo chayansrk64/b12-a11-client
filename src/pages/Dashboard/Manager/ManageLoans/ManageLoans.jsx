@@ -14,14 +14,24 @@ const ManageLoans = () => {
   const axiosSecure = useAxiosSecure();
   const [selectedLoan, setSelectedLoan] = useState(null)
   const modalRef = useRef(null);
+  const [search, setSearch] = useState('');
 
   const { isPending, data: manageLoans = [], refetch } = useQuery({
-    queryKey: ["manage-loans", user?.email],
+    queryKey: ["manage-loans", user?.email, search],
+     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/manager/${user?.email}/loans`);
+      const res = await axiosSecure.get(`/manager/${user?.email}/loans?search=${search}`);
       return res.data;
     },
   });
+
+  useEffect(() => {
+  const timeout = setTimeout(() => {
+    refetch();
+  }, 500);
+
+  return () => clearTimeout(timeout);
+}, [search, refetch]);
 
 
       // open update modal 
@@ -107,6 +117,12 @@ const ManageLoans = () => {
       ></SectionTitle>
 
       <div>
+        {/* search loan */}
+
+        <label className="input ms-4">
+            <input type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search" />
+        </label>
+
         {/* manage loan table */}
         <div className="overflow-x-auto">
           <table className="table">
