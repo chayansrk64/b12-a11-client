@@ -9,6 +9,7 @@ const LoanApplications = () => {
 
     const modalRef = useRef(null);
     const [selectedLoan, setSelectedLoan] = useState(null);
+    const [statusFilter, setStatusFilter] = useState('all');
 
      const axiosSecure = useAxiosSecure()
 
@@ -19,6 +20,8 @@ const LoanApplications = () => {
             return res.data;
         }
     })
+
+    const filteredLoans = statusFilter === 'all' ? loans : loans.filter(loan => loan.status === statusFilter)
 
 
     const handleShowModal = (loan) => {
@@ -31,11 +34,26 @@ const LoanApplications = () => {
          return <LoadingSpinner></LoadingSpinner>
     }
 
-    console.log(selectedLoan);
+
+    console.log(loans);
 
     return (
            <div>
                   <SectionTitle title="Loan Applications" subtitle="All loan applications by the applicants"></SectionTitle>
+
+                  <div className=''>
+                    <details className="dropdown">
+                    <summary className="btn m-1">Filter: {statusFilter}</summary>
+                    <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+
+                      <li><button onClick={() => setStatusFilter('all')}>All</button></li>
+                      <li><button onClick={() => setStatusFilter('pending')}>Pending</button></li>
+                      <li><button onClick={() => setStatusFilter('rejected')}>Rejected</button></li>
+                      <li><button onClick={() => setStatusFilter('approved')}>Approved</button></li>
+                      
+                    </ul>
+                  </details>
+                  </div>
        
                    {/* table */}
                    <div className="overflow-x-auto">
@@ -53,7 +71,7 @@ const LoanApplications = () => {
              </tr>
            </thead>
            <tbody>
-             {loans.map((loan, i) => <tr>
+             {filteredLoans.map((loan, i) => <tr key={loan._id}>
                <th>{i + 1}</th>
                <td>{loan._id}</td>
                <td> 
@@ -83,7 +101,7 @@ const LoanApplications = () => {
     {
         selectedLoan && 
         <>
-         <div className="hero bg-base-200 min-h-screen">
+         <div className="hero bg-base-200 ">
   <div className="hero-content flex-col">
     <img
       src={selectedLoan.image}
@@ -91,7 +109,7 @@ const LoanApplications = () => {
     />
     <div>
       <h1 className="text-3xl font-bold mb-4">{selectedLoan.loanTitle}</h1>
-      
+
       <p>Loan Amount $ {selectedLoan.loanAmount}</p>
       <p>Interest Rate: {selectedLoan.interestRate}</p>
       <p>Interest Rate: {selectedLoan.interestRate}</p>
