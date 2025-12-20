@@ -1,15 +1,28 @@
 import React from 'react';
 import useAuth from '../../hooks/useAuth';
-import { useLoaderData } from 'react-router';
+import {  useParams } from 'react-router';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const LoanApplication = () => {
     const {user} = useAuth();
-    const loan = useLoaderData()
+    const { id } = useParams();
+
+
     const axiosSecure = useAxiosSecure()
+
+    const {isPending, data: loan} = useQuery({
+        queryKey: ['loan', id],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/loans/${id}`)
+            return res.data;
+        }
+    })
+
 
     const {
         register,
@@ -21,6 +34,7 @@ const LoanApplication = () => {
     const loanApplicationSubmit = data => {
         data.status = 'pending',
         data.applicationFeeStatus = 'unpaid'
+        data.image = loan?.image;
         console.log(data);
 
 
@@ -38,6 +52,10 @@ const LoanApplication = () => {
 
     }
 
+    if(isPending){
+        return <LoadingSpinner></LoadingSpinner>
+    }
+
     return (
         <div className='max-w-7xl mx-auto'>
             <SectionTitle title="Loan Application Form" subtitle="Apply for your loan!"></SectionTitle>
@@ -51,7 +69,10 @@ const LoanApplication = () => {
             <input type="email" {...register('applicantsEmail')} defaultValue={user?.email} readOnly className="input w-full" placeholder="applicants Email" />
             {/* loan title */}
             <label className="label">Loan Title</label>
-            <input type="text" {...register('loanTitle')} defaultValue={loan?.title} readOnly className="input w-full" placeholder="applicants Email" />
+            <input type="text" {...register('loanTitle')} defaultValue={loan?.title} readOnly className="input w-full" placeholder="applicants Title" />
+            {/* loan category */}
+            <label className="label">Loan Category</label>
+            <input type="text" {...register('category')} defaultValue={loan?.category} readOnly className="input w-full" placeholder="Loan Category" />
             {/* interest rate */}
              <label className="label">Interest Rate</label>
              <input type="text" {...register('interestRate')} defaultValue={loan?.interest} readOnly className="input w-full" placeholder="applicants Email" />

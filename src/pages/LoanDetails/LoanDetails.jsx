@@ -81,7 +81,7 @@ const LoanDetails = () => {
           {/* Action Buttons */}
           <div className="flex gap-4">
             <Link
-                to={isDisabled ? '#' : `/loan-application/${loan.id}`}
+                to={isDisabled ? '#' : `/loan-application/${loan._id}`}
                 onClick={(e) => isDisabled && e.preventDefault()}
                 className={`px-6 py-3 font-semibold rounded-md transition
                   ${isDisabled

@@ -27,19 +27,13 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'loan-details/:id',
-                loader: async({params}) => {
-                    const loans = await fetch(`/loan.json`).then(res => res.json())
-                    return loans.find(loan => loan.id == params.id)
-                },
+                
                 element: <PrivateRoute> <LoanDetails></LoanDetails> </PrivateRoute>,
                 hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>
             },
             {
                 path: 'loan-application/:id',
-                loader: async({params}) => {
-                    const loans = await fetch(`/loan.json`).then(res => res.json())
-                    return loans.find(loan => loan.id == params.id)
-                },
+               
                 Component: LoanApplication,
                 hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>
             },

@@ -42,7 +42,7 @@ const AvaiableLoans = () => {
              Max Loan: ${loan.maxLimit}
             </p>
             <div className="card-actions justify-end">
-              <Link to={`/loan-details/${loan.id}`} className="btn btn-primary w-full">Loan Details</Link>
+              <Link to={`/loan-details/${loan._id}`} className="btn btn-primary w-full">Loan Details</Link>
             </div>
           </div>
         </div>
