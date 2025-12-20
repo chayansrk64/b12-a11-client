@@ -1,13 +1,42 @@
 import React from 'react';
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
+import { toast } from 'react-toastify';
 
 const AddLoan = () => {
-
+    const axiosSecure = useAxiosSecure();
     const {register, handleSubmit, formState: { errors } } = useForm()
-
+    
     const handleAddLoan = (data) => {
         console.log(data);
+        const profileImage = data.image[0];
+        const formData = new FormData();
+        formData.append('image', profileImage)
+
+        // 2. upload to imgBB using axios and get the url;
+        const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`;
+        // 3. post by axios
+        axios.post(image_API_URL, formData)
+        .then(res => {
+            // console.log('res after image', res.data.data.url);
+            data.image = res.data.data.url;
+
+            axiosSecure.post('/addloan', data)
+        .then(res => {
+            console.log(res.data);
+            toast.success("Loan Added Successfully!")
+        })
+        .catch(error => toast.error(error.message))
+
+
+        })
+
+        
+
+
+
     }
 
 
@@ -23,21 +52,24 @@ const AddLoan = () => {
           
             {/* loan title */}
             <label className="label">Loan Title</label>
-            <input type="text" {...register('loanTitle')}  className="input w-full" placeholder="Loan Title" />
+            <input type="text" {...register('title')}  className="input w-full" placeholder="Loan Title" />
+            {errors.title && <span className='text-sm text-red-500'>This field is required</span>} <br />
               {/* Description */}
             <label className="label">Description</label>
-            <input type="text" {...register('description', { required: true })}  className="input w-full" placeholder="Description" />
-             {errors.description && <span className='text-sm text-red-500'>This field is required</span>} <br />
+            <input type="text" {...register('shortDesc', { required: true })}  className="input w-full" placeholder="Description" />
+             {errors.shortDesc && <span className='text-sm text-red-500'>This field is required</span>} <br />
             {/* loan category */}
             <label className="label">Loan Category</label>
             <input type="text" {...register('category')} className="input w-full" placeholder="Loan Category" />
+            {errors.category && <span className='text-sm text-red-500'>This field is required</span>} <br />
             {/* interest rate */}
              <label className="label">Interest Rate</label>
-             <input type="text" {...register('interestRate')}  className="input w-full" placeholder="Interest Rate" />
+             <input type="text" {...register('interest')}  className="input w-full" placeholder="Interest Rate" />
+             {errors.interest && <span className='text-sm text-red-500'>This field is required</span>} <br />
               {/*Loan limit */}
             <label className="label">Max Loan Limit</label>
-            <input type="number" {...register('maxLoanLimit', { required: true })} className="input w-full" placeholder="max Loan Limit" />
-             {errors.maxLoanLimit && <span className='text-sm text-red-500'>This field is required</span>} <br />
+            <input type="number" {...register('maxLimit', { required: true })} className="input w-full" placeholder="max Loan Limit" />
+             {errors.maxLimit && <span className='text-sm text-red-500'>This field is required</span>} <br />
               {/* Required Documents */}
             <label className="label">Required Documents</label>
             <input type="text" {...register('requiredDocuments', { required: true })}  className="input w-full" placeholder="Address" />
