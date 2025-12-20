@@ -4,13 +4,18 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import { toast } from 'react-toastify';
+import useAuth from '../../../../hooks/useAuth';
 
 const AddLoan = () => {
+    const {user} = useAuth()
     const axiosSecure = useAxiosSecure();
     const {register, handleSubmit, formState: { errors } } = useForm()
+     
     
     const handleAddLoan = (data) => {
         console.log(data);
+        data.email = user.email;
+        data.role = 'manager'
         const profileImage = data.image[0];
         const formData = new FormData();
         formData.append('image', profileImage)
