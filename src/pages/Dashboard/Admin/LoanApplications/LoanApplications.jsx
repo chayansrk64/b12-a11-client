@@ -78,27 +78,38 @@ const LoanApplications = () => {
 <dialog ref={modalRef} id="my_modal_5" className="modal modal-bottom sm:modal-middle">
   <div className="modal-box">
     
-    <h3 className="font-bold text-lg">Hello!</h3>
+    <h3 className="font-bold text-lg">Loan Details!</h3>
    
     {
         selectedLoan && 
         <>
-         <div className="hero bg-base-200 min-h-screen mt-0">
+         <div className="hero bg-base-200 min-h-screen">
   <div className="hero-content flex-col">
     <img
-      src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+      src={selectedLoan.image}
       className=" rounded-lg shadow-2xl"
     />
     <div>
-      <h1 className="text-5xl font-bold">Box Office News!</h1>
-      <p className="py-6">
-        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-        quasi. In deleniti eaque aut repudiandae et a id nisi.
-      </p>
-      <button className="btn btn-primary">Get Started</button>
+      <h1 className="text-3xl font-bold mb-4">{selectedLoan.loanTitle}</h1>
+      
+      <p>Loan Amount $ {selectedLoan.loanAmount}</p>
+      <p>Interest Rate: {selectedLoan.interestRate}</p>
+      <p>Interest Rate: {selectedLoan.interestRate}</p>
+      <p>applicants Email: {selectedLoan.applicantsEmail}</p>
+      <p>applicants Name: {selectedLoan.fName} {selectedLoan.lName}</p>
+      <p>applicants Contact: {selectedLoan.contact}</p>
+      <p>income Source: {selectedLoan.incomeSource}</p>
+      <p>monthly Income: {selectedLoan.monthlyIncome}</p>
+      <p>reason For Loan: {selectedLoan.reasonForLoan}</p>
+      <p>address: {selectedLoan.address}</p>
+      <p>status: {selectedLoan.status}</p>
+      <p>application FeeS tatus: {selectedLoan.applicationFeeStatus}</p>
+      
     </div>
   </div>
 </div>
+
+
         
         </>
     }
