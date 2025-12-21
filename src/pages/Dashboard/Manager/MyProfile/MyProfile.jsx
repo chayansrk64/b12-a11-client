@@ -37,7 +37,7 @@ const MyProfile = () => {
       />
 
       {/* Profile Card */}
-      <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl p-1 shadow-xl">
+      <div className="bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl p-1 shadow-xl">
         <div className="bg-base-100 rounded-2xl p-8">
 
           {/* Top Section */}

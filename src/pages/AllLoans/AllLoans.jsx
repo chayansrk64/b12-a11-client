@@ -1,17 +1,17 @@
 import { Link } from 'react-router';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import { useQuery } from '@tanstack/react-query';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
+import useAxios from '../../hooks/useAxios';
 
 const AllLoans = () => {
 
-    const axiosSecure = useAxiosSecure()
-  
+  const axios = useAxios()
+
     const {isPending, data: loans = []} = useQuery({
         queryKey: ['all-loans'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/loans`);
+            const res = await axios.get(`/loans`);
             return res.data;
         }
     })
