@@ -8,6 +8,8 @@ import useRole from '../hooks/useRole';
 import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
 import { FcApproval } from "react-icons/fc";
 import { CgProfile } from "react-icons/cg";
+import Navbar from '../pages/Shared/Header/Navbar';
+import Footer from '../pages/Shared/Footer/Footer';
 
 const DashboardLayout = () => {
 
@@ -23,6 +25,7 @@ const DashboardLayout = () => {
             <div className="drawer lg:drawer-open">
   <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content">
+     <Navbar></Navbar>
     {/* Navbar */}
     <nav className="navbar w-full bg-secondary">
       <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square btn-ghost">
@@ -32,13 +35,19 @@ const DashboardLayout = () => {
       <div className="px-4">Dashboard of <span className='text-primary font-bold text-lg'>{role}</span></div>
     </nav>
     {/* Page content here */}
-    <Outlet></Outlet>
+    <div className='flex flex-col min-h-screen'>
+      <main className='flex-1'>
+       
+        <Outlet></Outlet>
+      </main>
+    <Footer></Footer>
+    </div>
     {/* <div className="p-4">Page Content</div> */}
   </div>
 
   <div className="drawer-side is-drawer-close:overflow-visible">
     <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-    <div className="flex min-h-full flex-col items-start bg-primary is-drawer-close:w-14 is-drawer-open:w-64">
+    <div className="flex min-h-full flex-col items-start bg-gray-300 is-drawer-close:w-14 is-drawer-open:w-64">
       {/* Sidebar content here */}
       <ul className="menu w-full grow">
         {/* List item */}
