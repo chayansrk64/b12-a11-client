@@ -3,9 +3,9 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import useAuth from '../../../hooks/useAuth';
-import Swal from 'sweetalert2';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const Register = () => {
 
@@ -14,7 +14,7 @@ const Register = () => {
     const location = useLocation();
     const navigate = useNavigate()
     // console.log('location form register', location);
-    // const axiosSecure = useAxiosSecure()
+    const axiosSecure = useAxiosSecure()
 
 
 
@@ -44,7 +44,7 @@ const Register = () => {
                 role: data.role
             }
 
-            axios.post('http://localhost:3000/users', userInfo)
+            axiosSecure.post('/users', userInfo)
             .then(res => {
                 if(res.data.insertedId){
                     toast.success("user created successfully")

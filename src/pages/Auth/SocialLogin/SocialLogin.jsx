@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
-import Swal from 'sweetalert2';
 import { toast } from "react-toastify";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
 
@@ -9,7 +9,7 @@ const SocialLogin = () => {
     const { googleLogIn, setLoading } = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
-    // const axiosSecure = useAxiosSecure()
+    const axiosSecure = useAxiosSecure()
     
 
     const handleGoogleLogin = () => {
@@ -21,13 +21,18 @@ const SocialLogin = () => {
           const userInfo = {
             displayName: result.user.displayName,
             email: result.user.email,
-            photoURL: result.user.photoURL
+            photoURL: result.user.photoURL,
+            role: 'borrower'
           }
         // TODO: axiosSecure call;
+          axiosSecure.post('/users', userInfo)
+          .then(() => {
+            toast.success('Login Successfull')
+            setLoading(false)
+            navigate(location?.state || '/')
+          })
+          .catch(error => toast.error(error.message))
           
-          toast.success('Login Successfull')
-          setLoading(false)
-          navigate(location?.state || '/')
        })
        .catch(error => {
          toast.error(error.message)
