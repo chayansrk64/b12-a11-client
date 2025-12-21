@@ -3,14 +3,16 @@ import { useQuery } from '@tanstack/react-query'
 import useAuth from '../../../../hooks/useAuth';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import LoadingSpinner from '../../../../components/LoadingSpinner/LoadingSpinner';
-import { FaEye, FaTrashCan } from 'react-icons/fa6';
+import { FaCcPaypal, FaEye, FaTrashCan } from 'react-icons/fa6';
 import { Link } from 'react-router';
+import { toast } from 'react-toastify';
+import ConfirmDeleteToast from '../../../../components/ConfirmDeleteToast.jsx/ConfirmDeleteToast';
 
 const MyLoans = () => {
     const axiosSecure = useAxiosSecure()
     const {user} = useAuth();
 
-    const {isPending, data: myloans = []} = useQuery({
+    const {isPending, data: myloans = [], refetch} = useQuery({
         queryKey: ['myloans', user?.email],
         enabled: !!user?.email,
         queryFn: async () => {
@@ -18,6 +20,36 @@ const MyLoans = () => {
             return res.data;
         }
     })
+
+
+
+  const handleDeleteLoan = (loan) => {
+  toast(
+    ({ closeToast }) => (
+      <ConfirmDeleteToast
+        onConfirm={async () => {
+          try {
+            await axiosSecure.delete(`/myloans/${loan._id}`); 
+            toast.success('Deleted successfully');
+            closeToast();
+            refetch(); 
+          } catch (err) {
+            toast.error(err.message);
+          }
+        }}
+        onCancel={closeToast}
+      />
+    ),
+    {
+      autoClose: false,
+      closeOnClick: false,
+    }
+  );
+};
+
+
+
+
 
      if(isPending){
          return <LoadingSpinner></LoadingSpinner>
@@ -53,8 +85,14 @@ const MyLoans = () => {
         <td>{loan.status}</td>
         <td>{loan.applicationFeeStatus}</td>
         <td>
-            <button className='btn btn-sm hover:bg-red-500 hover:text-white'><FaTrashCan /></button>
-            <Link to={`/loan-details/${loan.loanId}`} className='btn btn-sm hover:bg-gray-500 hover:text-white'><FaEye /></Link>
+          <Link to={`/loan-details/${loan.loanId}`} className='btn btn-sm hover:bg-gray-500 hover:text-white '>View</Link>
+          {
+            loan.applicationFeeStatus === 'unpaid' &&  <button onClick={() => handleDeleteLoan(loan)} className='btn btn-sm hover:bg-green-500 hover:text-white mx-2'>Pay</button>
+          }
+          {
+            loan.status === 'pending' &&  <button onClick={() => handleDeleteLoan(loan)} className='btn  btn-sm hover:bg-red-500 hover:text-white'>Cancel</button>
+          }
+           
 
         </td>
       </tr>)}

@@ -27,6 +27,7 @@ const LoanApplication = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors }
     } = useForm()
      
@@ -45,6 +46,7 @@ const LoanApplication = () => {
             console.log('after loan application', res.data);
             if(res.data.insertedId){
                 toast("Loan Application Successfull")
+                reset()
             }
         })
         .catch(error => {
