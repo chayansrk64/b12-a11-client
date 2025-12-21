@@ -10,15 +10,25 @@ const BorrowerProfile = () => {
   const { user, logOut } = useAuth();
   const axiosSecure = useAxiosSecure()
 
-   const {isPending, data: users = []} = useQuery({
-        queryKey: ['me'],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/users`)
-            return res.data;
-        }
-    })
+  //  const {isPending, data: users = []} = useQuery({
+  //       queryKey: ['me'],
+  //       queryFn: async () => {
+  //           const res = await axiosSecure.get(`/users`)
+  //           return res.data;
+  //       }
+  //   })
 
-    const profile = users.find(me => me.email === user?.email)
+const { isPending, data: profile } = useQuery({
+  queryKey: ['me', user?.email],
+  enabled: !!user?.email,
+  queryFn: async () => {
+    const res = await axiosSecure.get(`/users/me?email=${user.email}`)
+    return res.data;
+  }
+});
+
+
+    // const profile = users.find(me => me.email === user?.email)
    
 
   const handleLogout = async () => {
