@@ -19,6 +19,7 @@ import AddLoan from "../pages/Dashboard/Manager/AddLoan/AddLoan";
 import ManageLoans from "../pages/Dashboard/Manager/ManageLoans/ManageLoans";
 import MyProfile from "../pages/Dashboard/Manager/MyProfile/MyProfile";
 import ApprovedLoans from "../pages/Dashboard/Manager/ApprovedLoans/ApprovedLoans";
+import BorrowerProfile from "../pages/Dashboard/Borrower/BorrowerProfile/borrowerProfile";
 
 
 
@@ -72,6 +73,10 @@ export const router = createBrowserRouter([
             {
                 path: 'my-loans',
                 Component: MyLoans
+            },
+            {
+                path: 'borrower-profile',
+                Component: BorrowerProfile
             },
 
             // manager

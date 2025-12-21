@@ -6,7 +6,7 @@ import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from '../../../../components/LoadingSpinner/LoadingSpinner';
 
-const MyProfile = () => {
+const BorrowerProfile = () => {
   const { user, logOut } = useAuth();
   const axiosSecure = useAxiosSecure()
 
@@ -113,4 +113,4 @@ const MyProfile = () => {
   );
 };
 
-export default MyProfile;
+export default BorrowerProfile;

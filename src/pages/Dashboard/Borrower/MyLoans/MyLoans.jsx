@@ -3,7 +3,8 @@ import { useQuery } from '@tanstack/react-query'
 import useAuth from '../../../../hooks/useAuth';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import LoadingSpinner from '../../../../components/LoadingSpinner/LoadingSpinner';
-import { FaTrashCan } from 'react-icons/fa6';
+import { FaEye, FaTrashCan } from 'react-icons/fa6';
+import { Link } from 'react-router';
 
 const MyLoans = () => {
     const axiosSecure = useAxiosSecure()
@@ -34,6 +35,7 @@ const MyLoans = () => {
       <tr>
         <th>#</th>
         <th>Title</th>
+        <th>Loan Id</th>
         <th>Interest Rate</th>
         <th>Loan Amount</th>
         <th>Status</th>
@@ -45,12 +47,15 @@ const MyLoans = () => {
       {myloans.map((loan, i) => <tr>
         <th>{i + 1}</th>
         <td>{loan.loanTitle}</td>
+        <td>{loan.loanId}</td>
         <td>{loan.interestRate}</td>
         <td>{loan.loanAmount}</td>
         <td>{loan.status}</td>
         <td>{loan.applicationFeeStatus}</td>
         <td>
             <button className='btn btn-sm hover:bg-red-500 hover:text-white'><FaTrashCan /></button>
+            <Link to={`/loan-details/${loan.loanId}`} className='btn btn-sm hover:bg-gray-500 hover:text-white'><FaEye /></Link>
+
         </td>
       </tr>)}
       
