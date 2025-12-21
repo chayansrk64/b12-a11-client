@@ -34,7 +34,9 @@ const LoanApplication = () => {
     const loanApplicationSubmit = data => {
         data.status = 'pending',
         data.applicationFeeStatus = 'unpaid'
+        data.createdAt = new Date();
         data.image = loan?.image;
+        data.loanId = loan?._id;
         console.log(data);
 
 
