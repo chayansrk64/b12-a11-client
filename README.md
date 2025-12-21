@@ -1,16 +1,102 @@
-# React + Vite
+# 💳 MicroLoan Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application that allows users to explore loan options, apply for loans, and track application status, while managers and admins can manage loan products, applications, and users efficiently.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎯 Purpose
 
-## React Compiler
+The purpose of this project is to build a **role-based microloan management platform** where:
+- Borrowers can apply for loans
+- Managers can create and manage loan products
+- Admins can oversee users, loans, and applications
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This system demonstrates real-world use of **authentication, authorization, CRUD operations, dashboards, and secure APIs**.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🌐 Live Website
+
+🔗 **Live URL:**  
+https://your-live-site-url.com  
+*(Replace with your actual deployed link)*
+
+---
+
+## 👥 User Roles
+
+- **Borrower** – Apply for loans and track applications
+- **Manager** – Create, update, delete loan products
+- **Admin** – Manage users, loans, and loan applications
+
+---
+
+## ✨ Key Features
+
+### 🔐 Authentication & Authorization
+- Firebase authentication (Email/Password)
+- Role-based access control (Borrower / Manager / Admin)
+- Protected routes using JWT
+
+### 💼 Loan Management
+- View all available loan products
+- Apply for loans with detailed forms
+- Loan status tracking (Pending / Approved / Rejected)
+
+### 🧑‍💼 Manager Dashboard
+- Add new loan products
+- Update and delete existing loans
+- Search loans by title
+- Toggle **Show on Home** feature
+
+### 🛠️ Admin Dashboard
+- Manage users and roles
+- Approve / suspend users
+- View all loan applications
+- Filter loan applications by status
+
+### ⚡ Performance & UX
+- Data fetching with React Query
+- Optimistic UI updates (no page reload)
+- Confirmation modals for delete actions
+- Toast notifications for actions
+
+---
+
+## 🧰 Technologies Used
+
+### Frontend
+- React
+- React Router
+- Tailwind CSS
+- DaisyUI
+- TanStack React Query
+- React Icons
+- React Toastify
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- JWT (JSON Web Token)
+
+### Authentication
+- Firebase Authentication
+
+---
+
+## 📦 NPM Packages Used
+
+```bash
+react
+react-router-dom
+@tanstack/react-query
+axios
+firebase
+react-icons
+react-toastify
+express
+mongodb
+jsonwebtoken
+cors
+dotenv
