@@ -83,6 +83,7 @@ const Register = () => {
 
     return (
         <div>
+             <title>LoanLink-register</title>
             <div className='py-6'>
                 <h3 className="text-4xl font-bold">Create an Account</h3>
                 <p className='font-semibold py-2'>Register with LoanLink</p>

@@ -6,7 +6,7 @@ import LoadingSpinner from '../../../../components/LoadingSpinner/LoadingSpinner
 import { FaRegTrashCan } from 'react-icons/fa6';
 import { FaPencilAlt } from "react-icons/fa";
 import { toast } from 'react-toastify';
-import ConfirmDeleteToast from '../../../../components/ConfirmDeleteToast.jsx/ConfirmDeleteToast';
+import ConfirmDeleteToast from '../../../../components/ConfirmDeleteToast/ConfirmDeleteToast';
 
 
 

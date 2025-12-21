@@ -7,7 +7,7 @@ import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner
 import { FaPencilAlt } from "react-icons/fa";
 import { FaTrashCan } from "react-icons/fa6";
 import { toast } from "react-toastify";
-import ConfirmDeleteToast from "../../../../components/ConfirmDeleteToast.jsx/ConfirmDeleteToast";
+import ConfirmDeleteToast from "../../../../components/ConfirmDeleteToast/ConfirmDeleteToast";
 
 const ManageLoans = () => {
   const { user } = useAuth();

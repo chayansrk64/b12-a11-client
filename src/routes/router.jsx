@@ -20,6 +20,7 @@ import ManageLoans from "../pages/Dashboard/Manager/ManageLoans/ManageLoans";
 import MyProfile from "../pages/Dashboard/Manager/MyProfile/MyProfile";
 import ApprovedLoans from "../pages/Dashboard/Manager/ApprovedLoans/ApprovedLoans";
 import BorrowerProfile from "../pages/Dashboard/Borrower/BorrowerProfile/borrowerProfile";
+import NotFound from "../components/NotFound/NotFound";
 
 
 
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
     {
         path: "/",
         Component: RootLayout,
+        errorElement: <NotFound></NotFound>,
         children: [
             {
                 index: true,
@@ -116,4 +118,5 @@ export const router = createBrowserRouter([
             }
         ]
     }
+    
 ])

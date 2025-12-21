@@ -36,6 +36,7 @@ const Login = () => {
     
     return (
        <div>
+        <title>LoanLink-login</title>
             <div className='py-6'>
                 <h3 className="text-4xl font-bold">WelCome Back</h3>
                 <p className='font-semibold py-2'>Login with LoanLink</p>

@@ -6,7 +6,7 @@ import LoadingSpinner from '../../../../components/LoadingSpinner/LoadingSpinner
 import { FaCcPaypal, FaEye, FaTrashCan } from 'react-icons/fa6';
 import { Link } from 'react-router';
 import { toast } from 'react-toastify';
-import ConfirmDeleteToast from '../../../../components/ConfirmDeleteToast.jsx/ConfirmDeleteToast';
+import ConfirmDeleteToast from '../../../../components/ConfirmDeleteToast/ConfirmDeleteToast';
 
 const MyLoans = () => {
     const axiosSecure = useAxiosSecure()
