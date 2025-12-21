@@ -9,7 +9,7 @@ const ApprovedLoans = () => {
 
      const axiosSecure = useAxiosSecure()
     
-         const {isPending, data: approvedLoans = [], refetch} = useQuery({
+         const {isPending, data: approvedLoans = []} = useQuery({
             queryKey: ['myloans'],
             queryFn: async () => {
                 const res = await axiosSecure.get(`/approved-loans`);
