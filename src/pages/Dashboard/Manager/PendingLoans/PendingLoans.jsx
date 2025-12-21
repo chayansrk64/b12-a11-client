@@ -2,9 +2,6 @@ import React from 'react';
 import LoadingSpinner from '../../../../components/LoadingSpinner/LoadingSpinner';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
-import { IoMdDoneAll } from "react-icons/io";
-import { MdCancel } from "react-icons/md";
-import { FaRegEye } from 'react-icons/fa6';
 import { Link } from 'react-router';
 import { toast } from 'react-toastify';
 
@@ -83,7 +80,7 @@ const PendingLoans = () => {
                     <p>{loan.fName} {loan.lName}</p>
                     </td>
                     <td>$ {loan.loanAmount}</td>
-                    <td>{loan.status}</td>
+                    <td className='text-yellow-500'>{loan.status}</td>
                     <td>{loan.createdAt}</td>
                     <td>
                         <button onClick={() => handleStatusApprove (loan)} className='btn btn-sm hover:bg-green-500 hover:text-white'>Approve</button>

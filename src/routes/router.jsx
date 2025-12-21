@@ -17,8 +17,10 @@ import AllLoansAdmin from "../pages/Dashboard/Admin/AllLoansAdmin/AllLoansAdmin"
 import AllLoans from "../pages/AllLoans/AllLoans";
 import AddLoan from "../pages/Dashboard/Manager/AddLoan/AddLoan";
 import ManageLoans from "../pages/Dashboard/Manager/ManageLoans/ManageLoans";
-import ApprovedApplications from "../pages/Dashboard/Manager/ApprovedApplications/ApprovedApplications";
 import MyProfile from "../pages/Dashboard/Manager/MyProfile/MyProfile";
+import ApprovedLoans from "../pages/Dashboard/Manager/ApprovedLoans/ApprovedLoans";
+
+
 
 export const router = createBrowserRouter([
     {
@@ -90,8 +92,8 @@ export const router = createBrowserRouter([
                 Component: ManageLoans
             },
             {
-                path: 'approved-applications',
-                Component: ApprovedApplications
+                path: 'approved-loans',
+                Component: ApprovedLoans
             },
 
             // admin

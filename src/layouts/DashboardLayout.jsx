@@ -93,9 +93,9 @@ const DashboardLayout = () => {
                     </NavLink>
                 </li>
                  <li>
-                    <NavLink to="/dashboard/approved-applications" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="Approved Applications">
+                    <NavLink to="/dashboard/approved-loans" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="Approved Loans">
                     <span className="my-1.5 inline-block size-4 text-xl"> <FcApproval /></span>
-                    <span className="is-drawer-close:hidden">Approved Applications</span>
+                    <span className="is-drawer-close:hidden">Approved Loans</span>
                     </NavLink>
                 </li>
             </>
