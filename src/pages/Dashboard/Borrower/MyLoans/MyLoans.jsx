@@ -54,7 +54,7 @@ const MyLoans = () => {
             loanAmount: 1000,
             loanTitle: loan.loanTitle,
             applicantsEmail: loan.applicantsEmail,
-            loanId: loan.loanId
+            loanId: loan._id
         }
 
         const res = await axiosSecure.post('/payment-checkout-session', loanInfo)
