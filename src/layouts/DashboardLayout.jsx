@@ -66,13 +66,21 @@ const DashboardLayout = () => {
             role === 'borrower' && <>
                 
                 <li>
-                    <NavLink to="/dashboard/borrower-profile" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="my Profile">
-                    <span className="my-1.5 inline-block size-4 text-xl"> <CgProfile /> </span>
+                    <NavLink to="/dashboard/borrower-profile"  className={({ isActive }) =>
+                    `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                    flex items-center gap-2 px-3 py-2 rounded-md
+                    ${isActive ? 'bg-primary text-white' : 'hover:bg-base-200'}`
+                  }  data-tip="my Profile">
+                      <span className="my-1.5 inline-block size-4 text-xl"> <CgProfile /> </span>
                     <span className="is-drawer-close:hidden">My Profile</span>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/dashboard/my-loans" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="my Loans">
+                  <NavLink to="/dashboard/my-loans"  className={({ isActive }) =>
+                      `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                      flex items-center gap-2 px-3 py-2 rounded-md
+                      ${isActive ? 'bg-primary text-white' : 'hover:bg-base-200'}`
+                    }  data-tip="my Loans">
                     <span className="my-1.5 inline-block size-4 text-xl"> <MdAttachMoney /> </span>
                     <span className="is-drawer-close:hidden">My Loans</span>
                     </NavLink>
@@ -85,31 +93,51 @@ const DashboardLayout = () => {
         {
             role === 'manager' && <>
                  <li>
-                    <NavLink to="/dashboard/my-profile" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="My Profile">
+                    <NavLink to="/dashboard/my-profile"  className={({ isActive }) =>
+                      `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                      flex items-center gap-2 px-3 py-2 rounded-md
+                      ${isActive ? 'bg-primary text-white' : 'hover:bg-base-200'}`
+                    }  data-tip="My Profile">
                     <span className="my-1.5 inline-block size-4 text-xl"> <CgProfile /> </span>
                     <span className="is-drawer-close:hidden">My Profile</span>
                     </NavLink>
                 </li>
                  <li>
-                    <NavLink to="/dashboard/pending-loans" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="Pending Loans">
+                    <NavLink to="/dashboard/pending-loans"  className={({ isActive }) =>
+                        `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                        flex items-center gap-2 px-3 py-2 rounded-md
+                        ${isActive ? 'bg-primary text-white' : 'hover:bg-base-200'}`
+                      }  data-tip="Pending Loans">
                     <span className="my-1.5 inline-block size-4 text-xl"> <MdOutlinePendingActions /> </span>
                     <span className="is-drawer-close:hidden">Pending Loans</span>
                     </NavLink>
                 </li>
                  <li>
-                    <NavLink to="/dashboard/add-loan" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="Add Loan">
+                    <NavLink to="/dashboard/add-loan"  className={({ isActive }) =>
+                        `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                        flex items-center gap-2 px-3 py-2 rounded-md
+                        ${isActive ? 'bg-primary text-white' : 'hover:bg-base-200'}`
+                      } data-tip="Add Loan">
                     <span className="my-1.5 inline-block size-4 text-xl"> <MdOutlineAddCard /> </span>
                     <span className="is-drawer-close:hidden">Add Loan</span>
                     </NavLink>
                 </li>
                  <li>
-                    <NavLink to="/dashboard/manage-loans" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="Manage Loans">
+                    <NavLink to="/dashboard/manage-loans"  className={({ isActive }) =>
+                      `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                      flex items-center gap-2 px-3 py-2 rounded-md
+                      ${isActive ? 'bg-primary text-white' : 'hover:bg-base-200'}`
+                    }  data-tip="Manage Loans">
                     <span className="my-1.5 inline-block size-4 text-xl"> <MdManageAccounts /></span>
                     <span className="is-drawer-close:hidden">Manage Loans</span>
                     </NavLink>
                 </li>
                  <li>
-                    <NavLink to="/dashboard/approved-loans" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="Approved Loans">
+                    <NavLink to="/dashboard/approved-loans"  className={({ isActive }) =>
+                        `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                        flex items-center gap-2 px-3 py-2 rounded-md
+                        ${isActive ? 'bg-primary text-white' : 'hover:bg-base-200'}`
+                      }  data-tip="Approved Loans">
                     <span className="my-1.5 inline-block size-4 text-xl"> <FcApproval /></span>
                     <span className="is-drawer-close:hidden">Approved Loans</span>
                     </NavLink>
@@ -121,19 +149,31 @@ const DashboardLayout = () => {
         {
             role === 'admin' && <>
                 <li>
-                    <NavLink to="/dashboard/manage-users" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="Manage Users">
-                    <span className="my-1.5 inline-block size-4 text-xl"> <GrUserManager /> </span>
+                    <NavLink to="/dashboard/manage-users"  className={({ isActive }) =>
+                        `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                        flex items-center gap-2 px-3 py-2 rounded-md
+                        ${isActive ? 'bg-primary text-white' : 'hover:bg-base-200'}`
+                      }  data-tip="Manage Users">
+                      <span className="my-1.5 inline-block size-4 text-xl"> <GrUserManager /> </span>
                     <span className="is-drawer-close:hidden">Manage Users</span>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/dashboard/all-loans-admin" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="All Loans">
+                    <NavLink to="/dashboard/all-loans-admin"  className={({ isActive }) =>
+                      `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                      flex items-center gap-2 px-3 py-2 rounded-md
+                      ${isActive ? 'bg-primary text-white' : 'hover:bg-base-200'}`
+                    }  data-tip="All Loans">
                     <span className="my-1.5 inline-block size-4 text-xl"> <GiMoneyStack /> </span>
                     <span className="is-drawer-close:hidden">All Loans</span>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/dashboard/loan-applications" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="Loan Applications">
+                    <NavLink to="/dashboard/loan-applications"  className={({ isActive }) =>
+                        `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                        flex items-center gap-2 px-3 py-2 rounded-md
+                        ${isActive ? 'bg-primary text-white' : 'hover:bg-base-200'}`
+                      }  data-tip="Loan Applications">
                     <span className="my-1.5 inline-block size-4 text-xl"> <TfiWrite /> </span>
                     <span className="is-drawer-close:hidden">Loan Applications</span>
                     </NavLink>
