@@ -64,16 +64,17 @@ const DashboardLayout = () => {
         {/* borrower routes */}
         {
             role === 'borrower' && <>
-                <li>
-                    <NavLink to="/dashboard/my-loans" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="my Loans">
-                    <span className="my-1.5 inline-block size-4 text-xl"> <MdAttachMoney /> </span>
-                    <span className="is-drawer-close:hidden">My Loans</span>
-                    </NavLink>
-                </li>
+                
                 <li>
                     <NavLink to="/dashboard/borrower-profile" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="my Profile">
                     <span className="my-1.5 inline-block size-4 text-xl"> <CgProfile /> </span>
                     <span className="is-drawer-close:hidden">My Profile</span>
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/dashboard/my-loans" className="is-drawer-close:tooltip is-drawer-close:tooltip-right"  data-tip="my Loans">
+                    <span className="my-1.5 inline-block size-4 text-xl"> <MdAttachMoney /> </span>
+                    <span className="is-drawer-close:hidden">My Loans</span>
                     </NavLink>
                 </li>
             

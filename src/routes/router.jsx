@@ -21,6 +21,7 @@ import MyProfile from "../pages/Dashboard/Manager/MyProfile/MyProfile";
 import ApprovedLoans from "../pages/Dashboard/Manager/ApprovedLoans/ApprovedLoans";
 import BorrowerProfile from "../pages/Dashboard/Borrower/BorrowerProfile/borrowerProfile";
 import NotFound from "../components/NotFound/NotFound";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 
 
@@ -115,6 +116,10 @@ export const router = createBrowserRouter([
             {
                 path: 'loan-applications',
                 element: <LoanApplications></LoanApplications>
+            },
+            {
+                path: 'payment/:loanId',
+                Component: Payment
             }
         ]
     }
