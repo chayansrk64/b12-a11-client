@@ -22,6 +22,8 @@ import ApprovedLoans from "../pages/Dashboard/Manager/ApprovedLoans/ApprovedLoan
 import BorrowerProfile from "../pages/Dashboard/Borrower/BorrowerProfile/borrowerProfile";
 import NotFound from "../components/NotFound/NotFound";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
+import PaymentCancelled from "../pages/Dashboard/Payment/PaymentCancelled";
 
 
 
@@ -120,6 +122,14 @@ export const router = createBrowserRouter([
             {
                 path: 'payment/:loanId',
                 Component: Payment
+            },
+            {
+                path: 'payment-success',
+                Component: PaymentSuccess
+            },
+            {
+                path: 'payment-cancelled',
+                Component: PaymentCancelled
             }
         ]
     }

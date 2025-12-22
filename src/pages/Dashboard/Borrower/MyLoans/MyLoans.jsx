@@ -49,6 +49,22 @@ const MyLoans = () => {
 
 
 
+    const handlePayment = async (loan) => {
+         const loanInfo = {
+            loanAmount: 1000,
+            loanTitle: loan.loanTitle,
+            applicantsEmail: loan.applicantsEmail,
+            loanId: loan.loanId
+        }
+
+        const res = await axiosSecure.post('/payment-checkout-session', loanInfo)
+        
+
+        window.location.assign(res.data.url)
+
+    }
+
+
 
 
      if(isPending){
@@ -89,7 +105,8 @@ const MyLoans = () => {
           {
             loan.applicationFeeStatus === 'paid' ?
              <span className='text-green-600 mx-2 bg-green-200 px-2 py-1 rounded'>Paid</span> :
-              <Link to={`/dashboard/payment/${loan._id}`}  className='btn btn-sm hover:bg-green-500 hover:text-white mx-2'>Pay</Link>
+              <button onClick={() => handlePayment(loan)} className='btn btn-sm hover:bg-green-500 hover:text-white mx-2'>Pay</button>
+              // <Link to={`/dashboard/payment/${loan._id}`}  className='btn btn-sm hover:bg-green-500 hover:text-white mx-2'>Pay</Link>
           }
           {
             loan.status === 'pending' &&  <button onClick={() => handleDeleteLoan(loan)} className='btn  btn-sm hover:bg-red-500 hover:text-white'>Cancel</button>
