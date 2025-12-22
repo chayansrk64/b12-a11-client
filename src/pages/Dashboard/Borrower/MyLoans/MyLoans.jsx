@@ -3,7 +3,6 @@ import { useQuery } from '@tanstack/react-query'
 import useAuth from '../../../../hooks/useAuth';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import LoadingSpinner from '../../../../components/LoadingSpinner/LoadingSpinner';
-import { FaCcPaypal, FaEye, FaTrashCan } from 'react-icons/fa6';
 import { Link } from 'react-router';
 import { toast } from 'react-toastify';
 import ConfirmDeleteToast from '../../../../components/ConfirmDeleteToast/ConfirmDeleteToast';
@@ -99,12 +98,23 @@ const MyLoans = () => {
         <td>{loan.interestRate}</td>
         <td>{loan.loanAmount}</td>
         <td>{loan.status}</td>
-        <td>{loan.applicationFeeStatus}</td>
+       <td>
+            <span
+              className={`px-3 py-1 rounded font-semibold text-sm capitalize ${
+                loan.applicationFeeStatus === 'paid'
+                  ? 'bg-green-100 text-green-500'
+                  : 'bg-orange-100 text-orange-500'
+              }`}
+            >
+              {loan.applicationFeeStatus}
+            </span>
+          </td>
+
         <td>
           <Link to={`/loan-details/${loan.loanId}`} className='btn btn-sm hover:bg-gray-500 hover:text-white '>View</Link>
           {
             loan.applicationFeeStatus === 'paid' ?
-             <span className='text-green-600 mx-2 bg-green-200 px-2 py-1 rounded'>Paid</span> :
+             <span className='bg-green-100 text-green-500 mx-2 px-3 py-1 font-semibold text-sm capitalize rounded'>Paid</span> :
               <button onClick={() => handlePayment(loan)} className='btn btn-sm hover:bg-green-500 hover:text-white mx-2'>Pay</button>
               // <Link to={`/dashboard/payment/${loan._id}`}  className='btn btn-sm hover:bg-green-500 hover:text-white mx-2'>Pay</Link>
           }

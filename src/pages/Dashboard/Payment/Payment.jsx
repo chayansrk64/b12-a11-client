@@ -18,21 +18,21 @@ const Payment = () => {
     })
 
 
-    const handlePayment = async() => {
-        const loanInfo = {
-            loanAmount: 1000,
-            loanTitle: loan.loanTitle,
-            applicantsEmail: loan.applicantsEmail,
-            loanId: loan.loanId
-        }
+    // const handlePayment = async() => {
+    //     const loanInfo = {
+    //         loanAmount: 1000,
+    //         loanTitle: loan.loanTitle,
+    //         applicantsEmail: loan.applicantsEmail,
+    //         loanId: loan.loanId
+    //     }
 
-        const res = await axiosSecure.post('/create-checkout-session', loanInfo)
-        console.log(res.data);
+    //     const res = await axiosSecure.post('/create-checkout-session', loanInfo)
+    //     console.log(res.data);
 
-        // navigate to the stripe payment page
-        window.location.href = res.data.url;
+    //     // navigate to the stripe payment page
+    //     window.location.href = res.data.url;
 
-    }
+    // }
 
 
 
@@ -44,7 +44,7 @@ const Payment = () => {
     return (
         <div>
             <h3 className='text-2xl'>Pay $ {loan.loanAmount} for {loan.loanTitle}</h3>
-            <button onClick={handlePayment} className='btn btn-primary'>Payment</button>
+            <button  className='btn btn-primary'>Payment</button>
         </div>
     );
 };
