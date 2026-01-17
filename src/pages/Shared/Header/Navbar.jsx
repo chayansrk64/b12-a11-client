@@ -1,22 +1,22 @@
 import Logo from '../../../components/Logo/Logo';
 import { Link, NavLink } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
-import Swal from 'sweetalert2';
-import { toast } from 'react-toastify';
+import UserProfileMenu from '../../../components/UserProfileMenu/UserProfileMenu';
+
 
 const Navbar = () => {
 
-    const {user, setLoading, logOut} = useAuth()
+    const {user,} = useAuth()
     // console.log(user);
 
-    const handleLogOut = () => {
-       logOut()
-        .then(() => {
-        toast.success('LogOut Successfull!')
-        setLoading(false)
-      })
-      .catch(error => toast.error(error.message))
-    }
+    // const handleLogOut = () => {
+    //    logOut()
+    //     .then(() => {
+    //     toast.success('LogOut Successfull!')
+    //     setLoading(false)
+    //   })
+    //   .catch(error => toast.error(error.message))
+    // }
     
 
      const links = (
@@ -27,9 +27,10 @@ const Navbar = () => {
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/all-loans">All Loans</NavLink></li>
         <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-        <li><button onClick={handleLogOut}>LogOut</button></li>
+        {/* <li><button onClick={handleLogOut}>LogOut</button></li> */}
         <li>
-           <img className='w-10 h-8 object-cover rounded-full p-0' title={user?.displayName || "User"} src={ user?.photoURL} alt="" />
+           {/* <img className='w-10 h-8 object-cover rounded-full p-0' title={user?.displayName || "User"} src={ user?.photoURL} alt="" /> */}
+           <UserProfileMenu></UserProfileMenu>
         </li>
          
       </> 
@@ -52,8 +53,8 @@ const Navbar = () => {
 
 
     return (
-        <div className='bg-primary text-white'>
-            <div className="navbar max-w-7xl mx-auto ">
+        <div className='bg-primary text-white fixed top-0 left-0 w-full z-50'>
+            <div className="navbar max-w-7xl mx-auto sticky">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -67,8 +68,8 @@ const Navbar = () => {
     </div>
     <Logo></Logo>
   </div>
-  <div className="navbar-end hidden lg:flex">
-    <ul className="menu menu-horizontal px-1">
+  <div className="navbar-end hidden lg:flex items-center">
+    <ul className="menu menu-horizontal px-1 items-center">
       {links}
     </ul>
   </div>

@@ -61,7 +61,7 @@ const LoanApplication = () => {
     }
 
     return (
-        <div className='max-w-7xl mx-auto'>
+        <div className='max-w-7xl mx-auto mt-[72px]'>
             <SectionTitle title="Loan Application Form" subtitle="Apply for your loan!"></SectionTitle>
 
         {/* hook form */}

@@ -23,7 +23,7 @@ const AllLoans = () => {
   
 
     return (
-        <div>
+        <div className='mt-[72px]'>
           <title>LoanLink-AllLoans</title>
              <SectionTitle title="All Loans" subtitle="All loans here for your business"></SectionTitle>
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-10">

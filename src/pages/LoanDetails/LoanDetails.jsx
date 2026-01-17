@@ -30,7 +30,7 @@ const LoanDetails = () => {
 
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
+    <div className="max-w-6xl mx-auto px-4 py-10 mt-[72px]">
       {/* Breadcrumb */}
       <p className="text-sm text-gray-500 mb-6">
         Home / Loans / <span className="text-black">{loan.title}</span>
