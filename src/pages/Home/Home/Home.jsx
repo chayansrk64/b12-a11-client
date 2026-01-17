@@ -5,6 +5,9 @@ import HowItWorks from '../HowItWorks/HowItWorks';
 import CustomerFeedback from '../CustomerFeedback/CustomerFeedback';
 import VolunteerSection from '../VolunteerSection/VolunteerSection';
 import UpcomingEvents from '../UpComingEvents/UpComingEvents';
+import Newsletter from '../../../components/Newsletter/Newsletter';
+import FAQ from '../../../components/FAQ/FAQ';
+import Statistics from '../../../components/Statistics/Statistics';
 
 
 const Home = () => {
@@ -18,6 +21,9 @@ const Home = () => {
             <CustomerFeedback></CustomerFeedback>
             <VolunteerSection></VolunteerSection>
             <UpcomingEvents></UpcomingEvents>
+            <Newsletter></Newsletter>
+            <FAQ></FAQ>
+            <Statistics></Statistics>
         </div>
     );
 };
