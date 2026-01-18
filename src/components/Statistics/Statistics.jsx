@@ -38,7 +38,7 @@ const statsData = [
 const Statistics = () => {
   return (
     <section className="bg-background-light dark:bg-background-dark py-16 font-display">
-      <div className="w-full max-w-7xl mx-auto  ">
+      <div className="w-full max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row overflow-hidden rounded-xl shadow-2xl border border-black/5 dark:border-white/5">
 
           {/* LEFT PANEL */}

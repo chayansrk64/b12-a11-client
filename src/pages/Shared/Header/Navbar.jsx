@@ -2,6 +2,7 @@ import Logo from '../../../components/Logo/Logo';
 import { Link, NavLink } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import UserProfileMenu from '../../../components/UserProfileMenu/UserProfileMenu';
+import ThemeToggle from '../../../components/ThemeToggle/ThemeToggle';
 
 
 const Navbar = () => {
@@ -9,18 +10,10 @@ const Navbar = () => {
     const {user,} = useAuth()
     // console.log(user);
 
-    // const handleLogOut = () => {
-    //    logOut()
-    //     .then(() => {
-    //     toast.success('LogOut Successfull!')
-    //     setLoading(false)
-    //   })
-    //   .catch(error => toast.error(error.message))
-    // }
-    
 
      const links = (
     <>
+    
 
     {
       user ? <>
@@ -42,11 +35,12 @@ const Navbar = () => {
         <li><NavLink to="/contact">Contact</NavLink></li>
         <li><NavLink to="/login">Login</NavLink></li>
         <li><NavLink to="/register">Register</NavLink></li>   
-      <div className='flex items-center'>
-          <input type="checkbox" value="synthwave" className="toggle theme-controller " />
-      </div>
+     
       </>
     }
+
+{/* theme toggle */}
+    {/* <ThemeToggle /> */}
        
     </>
   );
@@ -54,7 +48,7 @@ const Navbar = () => {
 
     return (
         <div className='bg-primary text-white fixed top-0 left-0 w-full z-50'>
-            <div className="navbar max-w-7xl mx-auto sticky">
+            <div className="navbar max-w-7xl mx-auto">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

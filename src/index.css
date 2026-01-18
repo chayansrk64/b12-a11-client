@@ -2,12 +2,10 @@
 * {
    font-family: "Jost", sans-serif;
 }
-body {
-  background-color: #f9fafb;
-}
 
 @import "tailwindcss";
 @plugin "daisyui";
+
 @plugin "daisyui/theme" {
   name: "light";
   prefersdark: 'light';
